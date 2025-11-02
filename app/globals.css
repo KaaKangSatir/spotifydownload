@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Spotify Music Downloader Design System */
+
+@layer base {
+  :root {
+    /* Dark theme for music app */
+    --background: 222 15% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 20% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 20% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Spotify-inspired green primary */
+    --primary: 142 76% 36%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Purple accent for music vibes */
+    --secondary: 270 95% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 15% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Pink accent for highlights */
+    --accent: 320 85% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 15% 20%;
+    --input: 222 15% 15%;
+    --ring: 142 76% 36%;
+
+    --radius: 0.75rem;
+
+    /* Music app specific colors */
+    --music-gradient: linear-gradient(135deg, hsl(320 85% 60%) 0%, hsl(270 95% 60%) 50%, hsl(142 76% 36%) 100%);
+    --music-gradient-subtle: linear-gradient(135deg, hsl(320 85% 60% / 0.1) 0%, hsl(270 95% 60% / 0.1) 100%);
+    --music-shadow: 0 20px 40px -12px hsl(320 85% 60% / 0.25);
+    --music-glow: 0 0 60px hsl(320 85% 60% / 0.3);
+
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: linear-gradient(135deg, hsl(222 15% 8%) 0%, hsl(222 20% 10%) 100%);
+    min-height: 100vh;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--accent));
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent) / 0.8);
+  }
+}
+
+@layer components {
+  .music-gradient {
+    background: var(--music-gradient);
+  }
+
+  .music-gradient-text {
+    background: var(--music-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: hsl(var(--card) / 0.8);
+    border: 1px solid hsl(var(--border) / 0.2);
+    transition: var(--transition-smooth);
+  }
+
+  .glass-effect:hover {
+    background: hsl(var(--card) / 0.9);
+    border-color: hsl(var(--accent) / 0.3);
+    box-shadow: var(--music-shadow);
+  }
+
+  .audio-wave {
+    background: linear-gradient(90deg, hsl(var(--accent)) 0%, hsl(var(--primary)) 50%, hsl(var(--accent)) 100%);
+    background-size: 200% 100%;
+    animation: wave 2s ease-in-out infinite;
+  }
+
+  .floating {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes wave {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes shimmer {
+    0%,
+    100% {
+      background-position: 0% 50%;
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      background-position: 100% 50%;
+      filter: hue-rotate(30deg);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  /* Enhanced animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 2s ease-out;
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 2s ease-out infinite;
+  }
+
+  /* Page transition effects */
+  .page-enter {
+    opacity: 0;
+    transform: translateX(100px) scale(0.95);
+  }
+
+  .page-enter-active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    transition: all 0.4s ease-out;
+  }
+
+  .page-exit {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .page-exit-active {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.95);
+    transition: all 0.4s ease-out;
+  }
+
+  /* Smooth link transitions */
+  a,
+  button {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Global smooth transitions */
+  * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+      transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Add bounce animation for loading dots */
+  @keyframes bounce-custom {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-8px);
+      opacity: 0.7;
+    }
+  }
+
+  .animate-bounce {
+    animation: bounce-custom 1.4s ease-in-out infinite;
+  }
+}
