@@ -262,7 +262,7 @@ export default function ApiDocsClient() {
               <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto text-sm">
                 {`// Search API
 const searchMusic = async (query) => {
-  const response = await fetch('/api/search', {
+  const response = await fetch('https://spotifydownload.vercel.app/api/search', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query })
@@ -272,7 +272,7 @@ const searchMusic = async (query) => {
 
 // Download API
 const downloadMusic = async (link) => {
-  const response = await fetch('/api/download', {
+  const response = await fetch('https://spotifydownload.vercel.app/api/download', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ link })
